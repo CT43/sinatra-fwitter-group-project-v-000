@@ -52,9 +52,12 @@ class TweetsController < ApplicationController
       if params[:content].empty?
         redirect to "/tweets/#{@tweet.id}/edit"
       else
-      @tweet.content = (params[:content])
-      @tweet.save
-      redirect to "/tweets/#{@tweet.id}"
+        if @tweet && @tweet.user == current_user
+          @tweet.content = (params[:content])
+          @tweet.save
+          redirect to "/tweets/#{@tweet.id}"
+        end 
+        redirect to '/tweets'
     end
   end
 
