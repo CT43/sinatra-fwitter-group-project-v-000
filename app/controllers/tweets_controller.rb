@@ -24,6 +24,7 @@ class TweetsController < ApplicationController
       @tweet = Tweet.new(content: params[:content])
       @tweet.user_id = current_user.id
       @tweet.save
+      redirect to '/tweets'
     end
   end
 
